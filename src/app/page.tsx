@@ -3,11 +3,12 @@ import { Header } from "@/components/header";
 import { Icon } from "@/components/icon";
 import { ProjectCard } from "@/components/project-card";
 import { Section } from "@/components/section";
+import { TechExplorer } from "@/components/tech-explorer";
 
 export default function Home() {
   return <>
     <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
-    <div id="inicio"><Header /></div>
+    <Header />
     <main id="conteudo" className="shell">
       <section className="intro" aria-labelledby="intro-title">
         <div className="intro-topline"><span className="eyebrow"><span className="green-dot" aria-hidden="true" /> DESENVOLVEDOR FULL STACK</span><span className="intro-location"><Icon name="pin" /> Cuiabá, MT · Brasil</span></div>
@@ -19,10 +20,10 @@ export default function Home() {
             <div className="intro-actions"><a className="button primary" href="#projetos">Conheça meus projetos <Icon name="down" /></a><a className="text-link" href="/curriculo/"><Icon name="file" /> Ver/Imprimir currículo</a></div>
           </div>
           <aside className="intro-aside" aria-label="Foco profissional">
-            <div className="aside-mark" aria-hidden="true">&lt;km /&gt;</div>
-            <span className="eyebrow">ENTRE INTERFACES E SISTEMAS</span>
-            <p>Clareza na interface.<br />Cuidado na construção.</p>
-            <div className="aside-bottom"><span>Web & APIs</span><span>React · Node.js · .NET</span></div>
+            <div className="aside-topline"><span className="aside-dots" aria-hidden="true"><i /><i /><i /></span><span>stack / overview</span><Icon name="code" /></div>
+            <div className="aside-content"><span className="eyebrow">DA INTERFACE AO BACKEND</span><p>As partes se conectam.<br /><span>O resultado faz sentido.</span></p>
+              <div className="stack-path"><div><Icon name="code" /><span><strong>Interface</strong><small>React · Next.js</small></span><span className="stack-file">.tsx</span></div><div><Icon name="server" /><span><strong>APIs</strong><small>Node.js · .NET</small></span><span className="stack-file">/api</span></div><div><Icon name="database" /><span><strong>Dados</strong><small>SQL · SQLite</small></span><span className="stack-file">.sql</span></div></div>
+            </div><a className="aside-bottom" href="#tecnologias">Explorar tecnologias <Icon name="down" /></a>
           </aside>
         </div>
         <div className="intro-foot"><span>PORTFÓLIO & CURRÍCULO</span><a href={profile.githubUrl} target="_blank" rel="noopener noreferrer"><Icon name="github" /> GitHub <Icon name="arrow" /></a></div>
@@ -50,7 +51,7 @@ export default function Home() {
 
       <Section id="tecnologias" number="04" title="Ferramentas de trabalho">
         <p className="section-intro">Tecnologias presentes nos meus projetos e práticas que acompanham o desenvolvimento.</p>
-        <div className="tech-grid">{technologies.map(group => <div key={group.category} className="tech-group"><h3>{group.category}</h3><ul>{group.items.map(item => <li key={item}>{item}</li>)}</ul></div>)}</div>
+        <TechExplorer groups={technologies} />
       </Section>
 
       <Section id="formacao" number="05" title="Formação e atividades">
@@ -65,6 +66,6 @@ export default function Home() {
         <a href={profile.githubUrl} target="_blank" rel="noopener noreferrer"><span><Icon name="github" /> GitHub</span><Icon name="arrow" /></a><a href="/curriculo/"><span><Icon name="file" /> Ver/Imprimir currículo</span><Icon name="arrow" /></a>
       </div></section>
     </main>
-    <footer className="site-footer shell"><span>© {new Date().getFullYear()} {profile.name}</span><span>Feito com atenção aos detalhes.</span><a href="#inicio">Voltar ao topo ↑</a></footer>
+    <footer className="site-footer shell"><span>© {new Date().getFullYear()} {profile.name}</span><span>Feito com atenção aos detalhes.</span><a href="#inicio">Voltar ao topo <Icon name="up" /></a></footer>
   </>;
 }

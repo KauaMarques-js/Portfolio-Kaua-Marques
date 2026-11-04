@@ -5,10 +5,12 @@ export default defineConfig({
   workers: 1,
   use: {
     baseURL: "http://127.0.0.1:3100",
-    browserName: "chromium",
-    channel: "chrome",
     headless: true,
   },
+  projects: [
+    { name: "chrome", use: { browserName: "chromium", channel: "chrome" }, testIgnore: "**/iphone.spec.ts" },
+    { name: "webkit-mobile", use: { browserName: "webkit", viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true }, testMatch: "**/iphone.spec.ts" },
+  ],
   webServer: {
     command: "node scripts/serve.mjs 3100",
     url: "http://127.0.0.1:3100",

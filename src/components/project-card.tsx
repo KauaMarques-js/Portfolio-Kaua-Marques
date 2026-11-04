@@ -11,7 +11,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
       {hasImage && project.image ? <Image src={project.image} alt={project.imageAlt || `Interface de ${project.name}`} width={800} height={500} sizes="(max-width: 700px) 100vw, 50vw" /> : <div className="project-placeholder" aria-label={`${project.name}, captura de tela ainda não adicionada`}>
         <span className="visual-index" aria-hidden="true">PROJETO / {String(index + 1).padStart(2, "0")}</span>
         <span className="visual-wordmark" aria-hidden="true">{project.name}<span className="wordmark-dot">.</span></span>
-        <span className="visual-caption">{project.category}<span aria-hidden="true">↗</span></span>
+        <span className="visual-caption">{project.category}<Icon name="arrow" /></span>
       </div>}
     </div>
     <div className="project-body">

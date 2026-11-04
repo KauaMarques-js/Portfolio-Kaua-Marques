@@ -45,6 +45,7 @@ test("menu no celular e acesso por teclado", async ({ page }) => {
   await expect(mobileNav).toBeVisible();
   await mobileNav.getByRole("link", { name: "Formação" }).click();
   await expect(page).toHaveURL(/#formacao$/);
+  await expect(mobileNav).toBeHidden();
   await expect(page.getByRole("heading", { name: "Formação e atividades" })).toBeInViewport();
 });
 
@@ -76,4 +77,52 @@ test("movimento reduzido respeita a preferência do navegador", async ({ page })
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe("auto");
+});
+
+test("tema escuro persiste e mantém o contraste", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  const toggle = page.getByRole("button", { name: "Tema escuro" });
+  await expect(toggle).toBeEnabled();
+  await toggle.click();
+  await expect(toggle).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await page.reload();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await expect(toggle).toHaveAttribute("aria-pressed", "true");
+  const accessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
+  expect(accessibility.violations.map(item => ({ id: item.id, nodes: item.nodes.map(node => node.target) }))).toEqual([]);
+  await page.screenshot({ path: "artifacts/portfolio-escuro-390.png", fullPage: true });
+  await toggle.click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+});
+
+test("filtros da stack funcionam por teclado sem esconder informações permanentemente", async ({ page }) => {
+  await page.goto("/");
+  const filters = page.getByRole("group", { name: "Filtrar tecnologias" });
+  const interfaces = filters.getByRole("button", { name: "Interfaces", exact: true });
+  await interfaces.focus();
+  await page.keyboard.press("Enter");
+  await expect(interfaces).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("#tech-results")).toContainText("Next.js");
+  await expect(page.locator("#tech-results")).not.toContainText("SQLite");
+  await filters.getByRole("button", { name: "Backend e dados", exact: true }).click();
+  await expect(page.locator("#tech-results")).toContainText("SQLite");
+  await expect(page.locator("#tech-results")).not.toContainText("Next.js");
+  await filters.getByRole("button", { name: "Todas", exact: true }).click();
+  await expect(page.locator("#tech-results")).toContainText("SQLite");
+  await expect(page.locator("#tech-results")).toContainText("Next.js");
+});
+
+test("navegação destaca a seção e os ícones não dependem de glifos de emoji", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  const link = page.getByRole("navigation", { name: "Navegação principal", exact: true }).getByRole("link", { name: "Projetos", exact: true });
+  await link.click();
+  await expect(link).toHaveAttribute("aria-current", "location");
+  await expect(page.getByRole("heading", { name: "Projetos selecionados" })).toBeInViewport();
+  expect(await page.locator("body").innerText()).not.toMatch(/[↑↓←→↗↘↙↖]/u);
+  await expect(page.locator(".visual-caption svg")).toBeVisible();
+  await expect(page.locator(".site-footer a svg")).toBeVisible();
 });

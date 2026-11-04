@@ -58,9 +58,10 @@ Projeto apresentado: [Flor Árabe Perfumaria](https://flor-arabe-perfumaria.verc
 
 ```sh
 npm run build
+npx playwright install webkit
 npm test
 ```
 
-Os testes usam Google Chrome instalado e verificam larguras 360/768/1440 px, navegação, teclado, menu, links, impressão, movimento reduzido e regras automatizadas de acessibilidade com axe-core. Capturas e PDF de verificação são gerados em `artifacts/`, fora do controle de versão.
+Os testes usam Google Chrome instalado e WebKit com viewport mobile. Verificam larguras 360/768/1440 px, navegação, teclado, menu, links, impressão, movimento reduzido, filtros de tecnologias, persistência do tema e regras automatizadas de acessibilidade nos temas claro e escuro. Capturas e PDF de verificação são gerados em `artifacts/`, fora do controle de versão. O teste WebKit exercita fontes, ícones e interações no motor de navegador usado pelo Safari; não substitui um teste em iPhone físico.
 
-A fonte Inter é servida localmente; sua licença está em `public/fonts/OFL.txt`.
+Geist e Geist Mono são servidas localmente; suas licenças estão em `public/fonts/Geist-OFL.txt` e `public/fonts/GeistMono-OFL.txt`. A interface usa ícones SVG, sem setas de texto que possam ser convertidas em emoji. A preferência de tema fica no armazenamento local do navegador, sem envio de dados.

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { activities, education, experiences, profile, projects, technologies } from "@/data/portfolio";
 import { PrintButton } from "@/components/print-button";
+import { Icon } from "@/components/icon";
 
 export const metadata: Metadata = { title: "Currículo — Kauã Marques Almeida" };
 
 export default function Resume() {
   return <main className="resume-page">
-    <div className="resume-toolbar"><a href="/">← Voltar ao portfólio</a><PrintButton /><p>Na janela de impressão, selecione A4 e “Salvar como PDF”.</p></div>
+    <div className="resume-toolbar"><a href="/"><Icon name="left" /> Voltar ao portfólio</a><PrintButton /><p>Na janela de impressão, selecione A4 e “Salvar como PDF”.</p></div>
     <article className="resume-sheet" aria-label="Currículo de Kauã Marques Almeida">
       <header className="resume-header"><h1>{profile.name}</h1><p className="resume-title">{profile.title} · Aplicações web e backend</p><p>{profile.location}</p><p className="resume-contacts"><a href={profile.githubUrl}>github.com/{profile.githubHandle}</a>{profile.email && <> · <a href={`mailto:${profile.email}`}>{profile.email}</a></>}{profile.phone && <> · {profile.phone}</>}{profile.linkedinUrl && <> · <a href={profile.linkedinUrl}>LinkedIn</a></>}</p></header>
       <section className="resume-section"><h2>Resumo profissional</h2><p>{profile.summary}</p></section>
