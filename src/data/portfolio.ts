@@ -92,6 +92,6 @@ export const education = [
 ];
 
 export const activities = [
-  { name: "NASA Space Apps Challenge", description: "Participação em hackathon." },
+  { name: "NASA Space Apps Challenge 2025", description: "2º lugar na etapa local de Cuiabá." },
   { name: "Hacker Hero 2026", description: "Participação em maratona colaborativa de tecnologia." },
 ];
