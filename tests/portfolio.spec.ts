@@ -79,12 +79,11 @@ test("movimento reduzido respeita a preferência do navegador", async ({ page })
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe("auto");
 });
 
-test("tema escuro persiste e mantém o contraste", async ({ page }) => {
+test("Midnight Blue é padrão e a preferência de tema persiste com contraste", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   const toggle = page.getByRole("button", { name: "Tema escuro" });
   await expect(toggle).toBeEnabled();
-  await toggle.click();
   await expect(toggle).toHaveAttribute("aria-pressed", "true");
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await page.reload();
@@ -95,6 +94,12 @@ test("tema escuro persiste e mantém o contraste", async ({ page }) => {
   await page.screenshot({ path: "artifacts/portfolio-escuro-390.png", fullPage: true });
   await toggle.click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  await page.reload();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  await expect(toggle).toHaveAttribute("aria-pressed", "false");
+  const lightAccessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
+  expect(lightAccessibility.violations.map(item => ({ id: item.id, nodes: item.nodes.map(node => node.target) }))).toEqual([]);
+  await page.screenshot({ path: "artifacts/portfolio-claro-390.png", fullPage: true });
 });
 
 test("filtros da stack funcionam por teclado sem esconder informações permanentemente", async ({ page }) => {

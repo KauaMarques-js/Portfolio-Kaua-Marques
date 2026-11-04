@@ -64,4 +64,6 @@ npm test
 
 Os testes usam Google Chrome instalado e WebKit com viewport mobile. Verificam larguras 360/768/1440 px, navegação, teclado, menu, links, impressão, movimento reduzido, filtros de tecnologias, persistência do tema e regras automatizadas de acessibilidade nos temas claro e escuro. Capturas e PDF de verificação são gerados em `artifacts/`, fora do controle de versão. O teste WebKit exercita fontes, ícones e interações no motor de navegador usado pelo Safari; não substitui um teste em iPhone físico.
 
-Geist e Geist Mono são servidas localmente; suas licenças estão em `public/fonts/Geist-OFL.txt` e `public/fonts/GeistMono-OFL.txt`. A interface usa ícones SVG, sem setas de texto que possam ser convertidas em emoji. A preferência de tema fica no armazenamento local do navegador, sem envio de dados.
+O tema padrão é Midnight Blue: fundo `#0B0F19`, cards `#151C2C`, azul `#4F8CFF`, destaques ciano `#22D3EE`, texto `#F8FAFC` e texto secundário `#94A3B8`. A opção clara continua disponível, e a preferência escolhida é preservada no armazenamento local do navegador, sem envio de dados. O tema escuro já está no HTML inicial, sem depender de JavaScript para as cores.
+
+Geist e Geist Mono são servidas localmente; suas licenças estão em `public/fonts/Geist-OFL.txt` e `public/fonts/GeistMono-OFL.txt`. A interface usa ícones SVG, sem setas de texto que possam ser convertidas em emoji.

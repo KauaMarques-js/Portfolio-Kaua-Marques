@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Icon } from "./icon";
 
 export function ThemeToggle() {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {

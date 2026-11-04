@@ -9,9 +9,10 @@ test("WebKit mobile: fontes, SVGs, menu, tema e filtros", async ({ page }) => {
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   expect(await page.locator("body").innerText()).not.toMatch(/[↑↓←→↗↘↙↖]/u);
   await expect(page.locator(".visual-caption svg")).toBeVisible();
-  await page.screenshot({ path: "artifacts/webkit-mobile-claro.png", fullPage: true });
-  await page.getByRole("button", { name: "Tema escuro" }).click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await page.screenshot({ path: "artifacts/webkit-mobile-escuro.png", fullPage: true });
+  await page.getByRole("button", { name: "Tema escuro" }).click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   await page.getByText("Menu", { exact: false }).click();
   const nav = page.getByRole("navigation", { name: "Navegação no celular" });
   await nav.getByRole("link", { name: "Projetos", exact: true }).click();
@@ -21,6 +22,6 @@ test("WebKit mobile: fontes, SVGs, menu, tema e filtros", async ({ page }) => {
   await expect(page.locator("#tech-results")).toContainText("SQLite");
   await expect(page.locator("#tech-results")).not.toContainText("Next.js");
   await page.getByRole("button", { name: "Todas", exact: true }).click();
-  await page.screenshot({ path: "artifacts/webkit-mobile-escuro.png", fullPage: true });
+  await page.screenshot({ path: "artifacts/webkit-mobile-claro.png", fullPage: true });
   expect(errors).toEqual([]);
 });
