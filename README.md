@@ -25,10 +25,12 @@ O build gera `out/`. O comando `npm start` serve essa pasta localmente na porta 
 
 1. Em **Add New → Project**, importe `KauaMarques-js/Portfolio-Kaua-Marques`.
 2. Use a branch **main** como produção e mantenha a pasta raiz `./`.
-3. Confira as opções: **Framework: Next.js**, **Build Command: npm run build**, **Output Directory: out**.
+3. Confira as opções: **Framework: Next.js**, **Build Command: npm run build**, **Output Directory: .next**.
 4. Clique em **Deploy**.
 
-O arquivo `vercel.json` já declara o framework, o comando e a saída estática. O site não usa banco de dados, autenticação ou variáveis secretas.
+O arquivo `vercel.json` declara o framework, o comando e o diretório interno `.next` usado pela integração da Vercel. A pasta `out/` continua sendo gerada para hospedagem estática e prévia local; ela não deve ser usada como Output Directory no preset Next.js da Vercel, pois não contém `routes-manifest.json`. O site não usa banco de dados, autenticação ou variáveis secretas.
+
+Se o projeto já tiver sido importado com Output Directory `out`, o `vercel.json` corrigido substitui esse valor no próximo deploy. No painel, também é possível desativar o override e manter o padrão do Next.js (`.next`). Refaça o deploy a partir da versão atual da `main`, em vez de repetir um commit anterior.
 
 O domínio da Vercel é usado automaticamente nos metadados. Para um endereço próprio, configure `NEXT_PUBLIC_SITE_URL` com a URL completa, incluindo `https://`, e faça um novo deploy. A indexação é habilitada no ambiente de produção da Vercel; prévias e execução local permanecem sem indexação.
 
