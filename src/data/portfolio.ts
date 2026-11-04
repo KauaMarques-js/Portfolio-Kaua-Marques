@@ -41,7 +41,7 @@ export const navigation = [
 
 export const experiences = [
   {
-    company: "SESP/MT",
+    company: "Secretaria de Estado de Segurança Pública (SESP/MT)",
     context: "Radiocomunicação",
     title: "Estagiário de TI",
     // Datas não confirmadas não são exibidas.
