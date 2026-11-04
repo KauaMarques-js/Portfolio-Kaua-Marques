@@ -1,0 +1,70 @@
+import { activities, education, experiences, profile, projects, technologies } from "@/data/portfolio";
+import { Header } from "@/components/header";
+import { Icon } from "@/components/icon";
+import { ProjectCard } from "@/components/project-card";
+import { Section } from "@/components/section";
+
+export default function Home() {
+  return <>
+    <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <div id="inicio"><Header /></div>
+    <main id="conteudo" className="shell">
+      <section className="intro" aria-labelledby="intro-title">
+        <div className="intro-topline"><span className="eyebrow"><span className="green-dot" aria-hidden="true" /> DESENVOLVEDOR FULL STACK</span><span className="intro-location"><Icon name="pin" /> Cuiabá, MT · Brasil</span></div>
+        <div className="intro-grid">
+          <div className="intro-main">
+            <h1 id="intro-title">Kauã Marques<span className="name-last">Almeida<span className="name-dot">.</span></span></h1>
+            <p className="intro-headline">{profile.headline}</p>
+            <p className="intro-description">{profile.intro}</p>
+            <div className="intro-actions"><a className="button primary" href="#projetos">Conheça meus projetos <Icon name="down" /></a><a className="text-link" href="/curriculo/"><Icon name="file" /> Ver/Imprimir currículo</a></div>
+          </div>
+          <aside className="intro-aside" aria-label="Foco profissional">
+            <div className="aside-mark" aria-hidden="true">&lt;km /&gt;</div>
+            <span className="eyebrow">ENTRE INTERFACES E SISTEMAS</span>
+            <p>Clareza na interface.<br />Cuidado na construção.</p>
+            <div className="aside-bottom"><span>Web & APIs</span><span>React · Node.js · .NET</span></div>
+          </aside>
+        </div>
+        <div className="intro-foot"><span>PORTFÓLIO & CURRÍCULO</span><a href={profile.githubUrl} target="_blank" rel="noopener noreferrer"><Icon name="github" /> GitHub <Icon name="arrow" /></a></div>
+      </section>
+
+      <Section id="sobre" number="01" title="Um pouco sobre mim">
+        <p className="about-lead">Gosto de entender o problema.<br /><span>E construir o que faz sentido.</span></p>
+        <p className="about-copy">{profile.summary}</p>
+        <div className="about-foot"><span><Icon name="pin" /> {profile.locationShort}</span><span>Engenharia de Software · UniSENAI</span></div>
+      </Section>
+
+      <Section id="experiencia" number="02" title="Experiência profissional">
+        <p className="section-intro">Experiência com tecnologia e com as pessoas que dependem dela no dia a dia.</p>
+        <div className="experience-list">{experiences.map((experience, index) => <article className="experience" key={experience.company}>
+          <div className="experience-company"><span className="company-symbol" aria-hidden="true">{index === 0 ? "S/" : "sp."}</span><div><h3>{experience.company}</h3><span>{experience.context}</span></div></div>
+          <div className="experience-details"><div className="experience-role"><h4>{experience.title}</h4>{experience.period && <span>{experience.period}</span>}</div><ul>{experience.responsibilities.map(item => <li key={item}>{item}</li>)}</ul></div>
+        </article>)}</div>
+      </Section>
+
+      <Section id="projetos" number="03" title="Projetos selecionados" className="projects-section">
+        <div className="project-section-intro"><p>Ideias colocadas em código.<br />Um projeto publicado para conhecer de perto.</p></div>
+        <div className="project-grid">{projects.filter(project => project.featured).map((project, index) => <ProjectCard project={project} index={index} key={project.id} />)}</div>
+        {projects.filter(project => !project.featured).map(project => <article className="other-project" key={project.id}><div><span className="eyebrow">TAMBÉM NO GITHUB · {project.status}</span><h3>{project.name}</h3><p>{project.description}</p><span className="other-tech">{project.tech.join(" · ")}</span></div><a className="text-link" href={project.githubUrl} target="_blank" rel="noopener noreferrer" aria-label={`Ver código de ${project.name} no GitHub`}>Ver código <Icon name="arrow" /></a></article>)}
+      </Section>
+
+      <Section id="tecnologias" number="04" title="Ferramentas de trabalho">
+        <p className="section-intro">Tecnologias presentes nos meus projetos e práticas que acompanham o desenvolvimento.</p>
+        <div className="tech-grid">{technologies.map(group => <div key={group.category} className="tech-group"><h3>{group.category}</h3><ul>{group.items.map(item => <li key={item}>{item}</li>)}</ul></div>)}</div>
+      </Section>
+
+      <Section id="formacao" number="05" title="Formação e atividades">
+        <div className="education-list">{education.map(item => <article className="education" key={item.title}><div><p className="education-institution">{item.institution} <span>· {item.location}</span></p><h3>{item.title}</h3></div><div className="education-status"><span>{item.status}</span>{item.period && <span>{item.period}</span>}</div></article>)}</div>
+        <div className="activities"><h3>Aprendizado em colaboração</h3><div>{activities.map(activity => <p key={activity.name}><strong>{activity.name}</strong><span>{activity.description}</span></p>)}</div></div>
+      </Section>
+
+      <section id="contato" className="contact" aria-labelledby="contact-title"><div><span className="eyebrow">06 / CONTATO</span><h2 id="contact-title">Vamos construir<br />uma boa conversa<span>.</span></h2><p>Conheça meu trabalho, explore os repositórios<br className="desktop-break" /> ou entre em contato pelos canais disponíveis.</p></div><div className="contact-links">
+        {profile.email && <a href={`mailto:${profile.email}`}>E-mail <Icon name="arrow" /></a>}
+        {profile.phone && <a href={`tel:${profile.phone.replace(/[^+\d]/g, "")}`}>Telefone <Icon name="arrow" /></a>}
+        {profile.linkedinUrl && <a href={profile.linkedinUrl} target="_blank" rel="noopener noreferrer">LinkedIn <Icon name="arrow" /></a>}
+        <a href={profile.githubUrl} target="_blank" rel="noopener noreferrer"><span><Icon name="github" /> GitHub</span><Icon name="arrow" /></a><a href="/curriculo/"><span><Icon name="file" /> Ver/Imprimir currículo</span><Icon name="arrow" /></a>
+      </div></section>
+    </main>
+    <footer className="site-footer shell"><span>© {new Date().getFullYear()} {profile.name}</span><span>Feito com atenção aos detalhes.</span><a href="#inicio">Voltar ao topo ↑</a></footer>
+  </>;
+}
