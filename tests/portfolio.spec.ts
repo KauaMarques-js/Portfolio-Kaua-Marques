@@ -16,8 +16,11 @@ for (const width of [360, 768, 1440]) {
     await page.getByRole("link", { name: "Conheça meus projetos" }).click();
     await expect(page).toHaveURL(/#projetos$/);
     await expect(page.getByRole("heading", { name: "Projetos selecionados" })).toBeInViewport();
-    // Sem capturas fornecidas, a página deve renderizar a alternativa textual, sem 404.
-    await expect(page.locator(".project-placeholder")).toHaveCount(1);
+    const screenshot = page.locator(".project-visual img");
+    await expect(screenshot).toBeVisible();
+    await expect(screenshot).toHaveAttribute("src", "/projects/flor-arabe.webp");
+    await expect.poll(() => screenshot.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
+    await expect(page.locator(".project-note")).toContainText("Checkout próprio em desenvolvimento");
     await expect(page.locator("#projetos .project-title h3")).toHaveText(["Flor Árabe"]);
     await expect(page.getByRole("link", { name: "Visitar site de Flor Árabe (abre em nova aba)" })).toHaveAttribute("href", "https://flor-arabe-perfumaria.vercel.app");
     await expect(page.locator('#projetos a[href*="github.com"]')).toHaveCount(0);
@@ -128,6 +131,6 @@ test("navegação destaca a seção e os ícones não dependem de glifos de emoj
   await expect(link).toHaveAttribute("aria-current", "location");
   await expect(page.getByRole("heading", { name: "Projetos selecionados" })).toBeInViewport();
   expect(await page.locator("body").innerText()).not.toMatch(/[↑↓←→↗↘↙↖]/u);
-  await expect(page.locator(".visual-caption svg")).toBeVisible();
+  await expect(page.locator(".project-links svg")).toBeVisible();
   await expect(page.locator(".site-footer a svg")).toBeVisible();
 });

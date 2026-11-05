@@ -8,7 +8,13 @@ test("WebKit mobile: fontes, SVGs, menu, tema e filtros", async ({ page }) => {
   expect(await page.evaluate(() => document.fonts.check('14px "Geist"'))).toBe(true);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   expect(await page.locator("body").innerText()).not.toMatch(/[↑↓←→↗↘↙↖]/u);
-  await expect(page.locator(".visual-caption svg")).toBeVisible();
+  const screenshot = page.locator(".project-visual img");
+  await screenshot.scrollIntoViewIfNeeded();
+  await expect(screenshot).toBeVisible();
+  await expect.poll(() => screenshot.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
+  await page.locator(".project").screenshot({ path: "artifacts/flor-arabe-card-webkit.png" });
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+  await expect(page.locator(".project-links svg")).toBeVisible();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await page.screenshot({ path: "artifacts/webkit-mobile-escuro.png", fullPage: true });
   await page.getByRole("button", { name: "Tema escuro" }).click();

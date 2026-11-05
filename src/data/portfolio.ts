@@ -73,9 +73,9 @@ export const projects: Project[] = [
     description: "Catálogo digital de perfumes com navegação por produtos e preparação do pedido para atendimento pelo WhatsApp.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
     image: "/projects/flor-arabe.webp",
-    imageAlt: "Captura do catálogo Flor Árabe Perfumaria",
+    imageAlt: "Página inicial da Flor Árabe Perfumaria com chamada para a coleção e perfume Sabah Al Ward Valentine em destaque",
     demoUrl: "https://flor-arabe-perfumaria.vercel.app",
-    note: "Compra concluída pelo WhatsApp; sem checkout próprio.",
+    note: "Pedidos atuais pelo WhatsApp. Checkout próprio em desenvolvimento para uma próxima versão.",
     featured: true,
   },
 ];

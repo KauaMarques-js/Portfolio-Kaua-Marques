@@ -49,10 +49,10 @@ Para uma alteração nova, crie uma branch a partir de `develop`, valide o build
 
 - `src/data/portfolio.ts`: perfil, contatos, experiência, projetos, formação e tecnologias.
 - `src/app/globals.css`: layout responsivo, estilos e impressão.
-- `public/projects/flor-arabe.webp`: caminho da captura da Flor Árabe. Na ausência da imagem, aparece uma composição tipográfica.
+- `public/projects/flor-arabe.webp`: captura real e otimizada da página inicial da Flor Árabe. Na ausência da imagem, aparece uma composição tipográfica.
 - `src/app/curriculo/page.tsx`: versão textual do currículo, usando os mesmos dados do portfólio.
 
-Projeto apresentado: [Flor Árabe Perfumaria](https://flor-arabe-perfumaria.vercel.app). Contato profissional: [LinkedIn](https://www.linkedin.com/in/kauamqs).
+Projeto apresentado: [Flor Árabe Perfumaria](https://flor-arabe-perfumaria.vercel.app), com pedidos atuais pelo WhatsApp e checkout próprio em desenvolvimento para uma próxima versão. Contato profissional: [LinkedIn](https://www.linkedin.com/in/kauamqs).
 
 ## Testes
 
