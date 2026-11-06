@@ -39,7 +39,20 @@ export default function Home() {
         <div className="project-grid">{showcaseProjects.map((project, index) => <ProjectCard project={project} index={index} key={project.id} />)}</div>
         <details className="more-projects">
           <summary>Veja outros projetos <span>{otherProjects.length}<Icon name="down" /></span></summary>
-          <ul>{otherProjects.map(project => <li key={project.id}>{project.githubUrl || project.demoUrl ? <a href={project.githubUrl || project.demoUrl} target="_blank" rel="noopener noreferrer">{project.name}<Icon name="arrow" /></a> : <span>{project.name}<small>{project.status}</small></span>}</li>)}</ul>
+          <ul>{otherProjects.map(project => <li key={project.id}>
+            <article className="other-project project-body" aria-labelledby={`other-${project.id}`}>
+              {project.status && <div className="project-meta"><span>{project.status}</span></div>}
+              <div className="other-project-heading"><h3 id={`other-${project.id}`}>{project.name}</h3><span className="project-category">{project.category}</span></div>
+              <p>{project.description}</p>
+              {project.tech.length > 0 && <ul className="tags" aria-label={`Tecnologias de ${project.name}`}>{project.tech.map(tech => <li key={tech}>{tech}</li>)}</ul>}
+              {project.note && <p className="project-note">{project.note}</p>}
+              {project.details && <p className="project-note">{project.details}</p>}
+              {(project.githubUrl || project.demoUrl) && <div className="project-links">
+                {project.demoUrl && <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" aria-label={`Visitar site de ${project.name} (abre em nova aba)`}>Visitar site <Icon name="arrow" /></a>}
+                {project.githubUrl && <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" aria-label={`Ver código de ${project.name} no GitHub (abre em nova aba)`}>Ver código <Icon name="arrow" /></a>}
+              </div>}
+            </article>
+          </li>)}</ul>
         </details>
       </Section>
 

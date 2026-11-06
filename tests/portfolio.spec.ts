@@ -23,7 +23,7 @@ for (const width of [360, 768, 1440]) {
     await expect.poll(() => screenshot.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
     await expect(page.locator(".project-flor-arabe .project-note")).toContainText("Checkout próprio em desenvolvimento");
     await expect(page.locator("#projetos .project-title h3")).toHaveText(["AirMetrics", "Flor Árabe", "Incluvia"]);
-    await expect(page.locator(".more-projects li")).toHaveText(["AgroPulse", "Vaultix Security", "Emissor Cuiabano", "AumigosProtótipo não publicado", "ADIA / CognitiveLoop"]);
+    await expect(page.locator(".more-projects h3")).toHaveText(["AgroPulse", "Vaultix Security", "Emissor Cuiabano", "Aumigos", "ADIA / CognitiveLoop"]);
     await expect(page.locator(".more-projects")).not.toHaveAttribute("open", "");
     await expect(page.locator(".project-airmetric .project-recognition")).toContainText("etapa local de Cuiabá, 2025");
     await expect(page.locator("#projetos")).not.toContainText("Nota Certa");
@@ -33,6 +33,9 @@ for (const width of [360, 768, 1440]) {
     await expect(page.locator('a[href^="mailto:"]')).toHaveCount(0);
     await expect(page.locator('a[href^="tel:"]')).toHaveCount(0);
     expect(await page.locator('a[target="_blank"]:not([rel*="noopener"])').count()).toBe(0);
+    await page.locator(".more-projects summary").click();
+    await expect(page.getByRole("article", { name: "AgroPulse", exact: true })).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     const accessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
     expect(accessibility.violations.map(item => ({ id: item.id, nodes: item.nodes.map(node => node.target) }))).toEqual([]);
     for (const image of await page.locator(".project-visual img").all()) {
@@ -156,6 +159,16 @@ test("destaque local e escopo dos protótipos são acessíveis", async ({ page }
   await summary.focus();
   await page.keyboard.press("Enter");
   await expect(page.locator(".more-projects")).toHaveAttribute("open", "");
-  await expect(page.getByRole("link", { name: "AgroPulse", exact: true })).toBeVisible();
-  await expect(page.locator(".more-projects li")).toHaveCount(5);
+  await expect(page.getByRole("link", { name: "Ver código de AgroPulse no GitHub (abre em nova aba)", exact: true })).toBeVisible();
+  await expect(page.locator(".more-projects > ul > li")).toHaveCount(5);
+  const agro = page.getByRole("article", { name: "AgroPulse", exact: true });
+  await expect(agro).toContainText("CopernicusLAC Panama Hackathon 2026");
+  await expect(agro.getByRole("list", { name: "Tecnologias de AgroPulse" })).toContainText("Mapbox");
+  await expect(page.getByRole("article", { name: "Vaultix Security", exact: true })).toContainText("Hacker Hero 2026");
+  const aumigos = page.getByRole("article", { name: "Aumigos", exact: true });
+  await expect(aumigos).toContainText("TCC 2024");
+  await expect(aumigos.getByRole("list", { name: "Tecnologias de Aumigos" })).toContainText("Express");
+  await expect(aumigos.getByRole("link")).toHaveCount(0);
+  await expect(page.getByRole("article", { name: "Emissor Cuiabano", exact: true })).toContainText("NF-e é simulada");
+  await expect(page.getByRole("article", { name: "ADIA / CognitiveLoop", exact: true })).toContainText("sem validação com estudantes");
 });

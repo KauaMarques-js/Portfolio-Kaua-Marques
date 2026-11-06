@@ -193,11 +193,11 @@ ul { margin: 0; padding: 0; }
 .more-projects summary > span { display: flex; align-items: center; gap: 14px; color: var(--muted); font-family: var(--mono); font-size: 11px; }
 .more-projects .icon { width: 16px; height: 16px; }
 .more-projects[open] summary .icon { transform: rotate(180deg); }
-.more-projects ul { list-style: none; padding-bottom: 12px; }
-.more-projects li + li { border-top: 1px solid var(--line); }
-.more-projects li > a, .more-projects li > span { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 52px; font-size: 13px; }
-.more-projects li > a:hover { color: var(--accent); }
-.more-projects small { color: var(--muted); font-size: 11px; }
+.more-projects > ul { list-style: none; padding-bottom: 12px; }
+.more-projects > ul > li + li { border-top: 1px solid var(--line); }
+.other-project { padding: 24px 0; min-width: 0; }
+.other-project-heading { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 14px; justify-content: space-between; }
+.other-project-heading h3 { font-size: 20px; font-weight: 600; letter-spacing: -.025em; }
 
 /* Exploração da stack */
 .tech-filters { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
