@@ -46,8 +46,7 @@ export const experiences = [
     company: "Secretaria de Estado de Segurança Pública (SESP/MT)",
     context: "Radiocomunicação",
     title: "Estagiário de TI",
-    // Datas não confirmadas não são exibidas.
-    period: undefined as string | undefined,
+    period: "Agosto de 2026 — atual",
     responsibilities: [
       "Programação e configuração de rádios digitais e suporte a equipamentos de radiocomunicação.",
       "Registro e análise inicial de chamados e ocorrências técnicas.",
@@ -58,7 +57,7 @@ export const experiences = [
     company: "Spedy",
     context: "Software fiscal · SaaS",
     title: "Estagiário em suporte técnico",
-    period: undefined as string | undefined,
+    period: "Abril de 2026 — julho de 2026",
     responsibilities: [
       "Atendimento por chat, e-mail e telefone, orientando clientes na utilização do software fiscal.",
       "Análise de erros de emissão, rejeições de documentos fiscais e arquivos XML.",
