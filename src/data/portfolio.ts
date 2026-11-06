@@ -148,8 +148,8 @@ export const projects: Project[] = [
   {
     id: "aumigos",
     name: "Aumigos",
-    category: "Agendamento veterinário",
-    description: "Protótipo de agendamento de consultas veterinárias, com cadastro, autenticação e acompanhamento de agendamentos.",
+    category: "Sistema para pet shop · TCC 2024",
+    description: "Protótipo de sistema para pet shop, proposto como trabalho de conclusão de curso em 2024, com agendamento de consultas veterinárias.",
     tech: ["Node.js", "Express", "SQLite", "JavaScript"],
     status: "Protótipo não publicado",
     featured: true,
