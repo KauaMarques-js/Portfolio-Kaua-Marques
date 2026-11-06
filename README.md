@@ -50,9 +50,12 @@ Para uma alteração nova, crie uma branch a partir de `develop`, valide o build
 - `src/data/portfolio.ts`: perfil, contatos, experiência, projetos, formação e tecnologias.
 - `src/app/globals.css`: layout responsivo, estilos e impressão.
 - `public/projects/flor-arabe.webp`: captura real e otimizada da página inicial da Flor Árabe. Na ausência da imagem, aparece uma composição tipográfica.
+- `public/projects/airmetric.jpg`: material fornecido do resultado do júri local do NASA Space Apps Cuiabá 2025, usado no destaque do protótipo AirMetrics.
 - `src/app/curriculo/page.tsx`: versão textual do currículo, usando os mesmos dados do portfólio.
 
-Projeto apresentado: [Flor Árabe Perfumaria](https://flor-arabe-perfumaria.vercel.app), com pedidos atuais pelo WhatsApp e checkout próprio em desenvolvimento para uma próxima versão. Contato profissional: [LinkedIn](https://www.linkedin.com/in/kauamqs).
+Projetos apresentados, nesta ordem: AirMetrics (protótipo premiado com 2º lugar na etapa local do NASA Space Apps Cuiabá 2025), Incluvia (em desenvolvimento), Flor Árabe (catálogo publicado), Aumigos (protótipo) e ADIA / CognitiveLoop (pesquisa e protótipo conceitual). Os estados são visíveis nos cartões; detalhes de escopo podem ser expandidos por teclado.
+
+A [Flor Árabe Perfumaria](https://flor-arabe-perfumaria.vercel.app) mantém pedidos pelo WhatsApp e checkout próprio em desenvolvimento para uma próxima versão. O código público da landing page ADIA tem link para o GitHub. Sem URLs inventadas ou links para repositórios privados. Stack, funcionalidades e contribuição individual do AirMetrics serão preenchidas apenas quando houver material confirmado. Contato profissional: [LinkedIn](https://www.linkedin.com/in/kauamqs).
 
 ## Testes
 

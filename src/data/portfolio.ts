@@ -11,6 +11,8 @@ export type Project = {
   status?: string;
   role?: string;
   note?: string;
+  recognition?: string;
+  details?: string;
   featured: boolean;
 };
 
@@ -32,9 +34,9 @@ export const profile = {
 };
 
 export const navigation = [
+  { id: "projetos", label: "Projetos" },
   { id: "sobre", label: "Sobre" },
   { id: "experiencia", label: "Experiência" },
-  { id: "projetos", label: "Projetos" },
   { id: "formacao", label: "Formação" },
   { id: "contato", label: "Contato" },
 ];
@@ -67,6 +69,29 @@ export const experiences = [
 
 export const projects: Project[] = [
   {
+    id: "airmetric",
+    name: "AirMetrics",
+    category: "NASA Space Apps · Cuiabá 2025",
+    description: "Protótipo apresentado no NASA Space Apps Challenge 2025, na etapa local de Cuiabá.",
+    tech: [],
+    image: "/projects/airmetric.jpg",
+    imageAlt: "Imagem fornecida do resultado do júri local do NASA Space Apps Cuiabá 2025, com AirMetrics na segunda posição",
+    status: "Protótipo de hackathon",
+    recognition: "2º lugar · NASA Space Apps Challenge · etapa local de Cuiabá, 2025",
+    note: "Projeto apresentado como protótipo, sem versão pública disponível.",
+    featured: true,
+  },
+  {
+    id: "incluvia",
+    name: "Incluvia",
+    category: "Acessibilidade digital",
+    description: "Aplicação para organizar auditorias de acessibilidade web e analisar possíveis vieses capacitistas em respostas de IA, com revisão humana dos achados.",
+    tech: ["Next.js", "TypeScript", "Prisma", "SQLite", "Playwright", "axe-core"],
+    status: "Em desenvolvimento",
+    details: "A aplicação inclui auditorias com Playwright e axe-core e uma base de demonstração identificada como tal. Os resultados automatizados apoiam a revisão humana.",
+    featured: true,
+  },
+  {
     id: "flor-arabe",
     name: "Flor Árabe",
     category: "Catálogo de perfumaria",
@@ -75,7 +100,28 @@ export const projects: Project[] = [
     image: "/projects/flor-arabe.webp",
     imageAlt: "Página inicial da Flor Árabe Perfumaria com chamada para a coleção e perfume Sabah Al Ward Valentine em destaque",
     demoUrl: "https://flor-arabe-perfumaria.vercel.app",
+    status: "Publicado · catálogo digital",
     note: "Pedidos atuais pelo WhatsApp. Checkout próprio em desenvolvimento para uma próxima versão.",
+    featured: true,
+  },
+  {
+    id: "aumigos",
+    name: "Aumigos",
+    category: "Agendamento veterinário",
+    description: "Protótipo de agendamento de consultas veterinárias, com cadastro, autenticação e acompanhamento de agendamentos.",
+    tech: ["Node.js", "Express", "SQLite", "JavaScript"],
+    status: "Protótipo não publicado",
+    featured: true,
+  },
+  {
+    id: "adia",
+    name: "ADIA / CognitiveLoop",
+    category: "Educação e autonomia",
+    description: "Proposta educacional sobre aprendizagem assistida e autonomia do estudante, apresentada em uma landing page.",
+    tech: ["Next.js", "React", "TypeScript", "CSS"],
+    githubUrl: "https://github.com/KauaMarques-js/landing-page-ADIA-FRAMEWORK",
+    status: "Pesquisa / protótipo conceitual",
+    details: "A landing page e um exemplo pedagógico interativo estão implementados. O mecanismo adaptativo permanece como proposta de pesquisa, sem validação com estudantes.",
     featured: true,
   },
 ];
@@ -92,6 +138,6 @@ export const education = [
 ];
 
 export const activities = [
-  { name: "NASA Space Apps Challenge 2025", description: "2º lugar na etapa local de Cuiabá." },
+  { name: "NASA Space Apps Challenge 2025", description: "2º lugar na etapa local de Cuiabá com o protótipo AirMetrics." },
   { name: "Hacker Hero 2026", description: "Participação em maratona colaborativa de tecnologia." },
 ];

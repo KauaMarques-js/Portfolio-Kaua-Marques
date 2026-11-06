@@ -1,7 +1,8 @@
-type IconName = "arrow" | "down" | "up" | "left" | "github" | "file" | "pin" | "sun" | "moon" | "menu" | "code" | "server" | "database";
+type IconName = "arrow" | "down" | "up" | "left" | "github" | "file" | "pin" | "sun" | "moon" | "menu" | "code" | "server" | "database" | "award";
 
 export function Icon({ name, className = "" }: { name: IconName; className?: string }) {
   const paths: Record<IconName, React.ReactNode> = {
+    award: <><path d="M8 3h8v5a4 4 0 0 1-8 0V3ZM8 5H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4M12 12v6m-5 3h10m-8-3h6v3H9z" /></>,
     arrow: <><path d="M7 17 17 7M7 7h10v10" /></>,
     down: <><path d="M12 4v16m-6-6 6 6 6-6" /></>,
     up: <><path d="M12 20V4m-6 6 6-6 6 6" /></>,

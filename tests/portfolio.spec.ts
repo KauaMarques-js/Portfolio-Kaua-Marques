@@ -16,20 +16,28 @@ for (const width of [360, 768, 1440]) {
     await page.getByRole("link", { name: "Conheça meus projetos" }).click();
     await expect(page).toHaveURL(/#projetos$/);
     await expect(page.getByRole("heading", { name: "Projetos selecionados" })).toBeInViewport();
-    const screenshot = page.locator(".project-visual img");
+    const screenshot = page.locator(".project-flor-arabe .project-visual img");
+    await screenshot.scrollIntoViewIfNeeded();
     await expect(screenshot).toBeVisible();
     await expect(screenshot).toHaveAttribute("src", "/projects/flor-arabe.webp");
     await expect.poll(() => screenshot.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
-    await expect(page.locator(".project-note")).toContainText("Checkout próprio em desenvolvimento");
-    await expect(page.locator("#projetos .project-title h3")).toHaveText(["Flor Árabe"]);
+    await expect(page.locator(".project-flor-arabe .project-note")).toContainText("Checkout próprio em desenvolvimento");
+    await expect(page.locator("#projetos .project-title h3")).toHaveText(["AirMetrics", "Incluvia", "Flor Árabe", "Aumigos", "ADIA / CognitiveLoop"]);
+    await expect(page.locator(".project-airmetric .project-recognition")).toContainText("etapa local de Cuiabá, 2025");
+    await expect(page.locator("#projetos")).not.toContainText(/Nota Certa|Emissor Cuiabano/);
+    await expect(page.locator(".project-airmetric .tags")).toHaveCount(0);
     await expect(page.getByRole("link", { name: "Visitar site de Flor Árabe (abre em nova aba)" })).toHaveAttribute("href", "https://flor-arabe-perfumaria.vercel.app");
-    await expect(page.locator('#projetos a[href*="github.com"]')).toHaveCount(0);
+    await expect(page.locator('#projetos a[href*="github.com"]')).toHaveAttribute("href", "https://github.com/KauaMarques-js/landing-page-ADIA-FRAMEWORK");
     await expect(page.locator('a[href^="mailto:"]')).toHaveCount(0);
     await expect(page.locator('a[href^="tel:"]')).toHaveCount(0);
     expect(await page.locator('a[target="_blank"]:not([rel*="noopener"])').count()).toBe(0);
     const accessibility = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
     expect(accessibility.violations.map(item => ({ id: item.id, nodes: item.nodes.map(node => node.target) }))).toEqual([]);
-    await page.goto("/");
+    for (const image of await page.locator(".project-visual img").all()) {
+      await image.scrollIntoViewIfNeeded();
+      await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.complete && element.naturalWidth > 0)).toBe(true);
+    }
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
     await page.screenshot({ path: `artifacts/portfolio-${width}.png`, fullPage: true });
     expect(errors).toEqual([]);
     expect(failedResponses).toEqual([]);
@@ -60,8 +68,9 @@ test("currículo textual acessível, responsivo e com impressão funcional", asy
   await page.goto("/");
   await page.getByRole("link", { name: "Currículo", exact: true }).click();
   await expect(page).toHaveURL(/\/curriculo\/$/);
-  await expect(page.locator(".resume-project")).toHaveCount(1);
-  await expect(page.locator(".resume-project-url")).toHaveAttribute("href", "https://flor-arabe-perfumaria.vercel.app");
+  await expect(page.locator(".resume-project")).toHaveCount(5);
+  await expect(page.locator(".resume-project").first()).toContainText("AirMetrics");
+  await expect(page.locator(".resume-project-url").first()).toHaveAttribute("href", "https://flor-arabe-perfumaria.vercel.app");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   await page.getByRole("button", { name: "Imprimir / Salvar em PDF" }).click();
   await expect(page.locator("html")).toHaveAttribute("data-print-requested", "true");
@@ -131,6 +140,20 @@ test("navegação destaca a seção e os ícones não dependem de glifos de emoj
   await expect(link).toHaveAttribute("aria-current", "location");
   await expect(page.getByRole("heading", { name: "Projetos selecionados" })).toBeInViewport();
   expect(await page.locator("body").innerText()).not.toMatch(/[↑↓←→↗↘↙↖]/u);
-  await expect(page.locator(".project-links svg")).toBeVisible();
+  await expect(page.locator(".project-flor-arabe .project-links svg")).toBeVisible();
   await expect(page.locator(".site-footer a svg")).toBeVisible();
+});
+
+test("destaque local e escopo dos protótipos são acessíveis", async ({ page }) => {
+  await page.goto("/");
+  await page.locator(".intro-recognition").click();
+  await expect(page).toHaveURL(/#projeto-airmetric$/);
+  await expect(page.locator(".project-airmetric")).toBeInViewport();
+  await expect(page.getByRole("link", { name: "Ver resultado local", exact: true })).toHaveAttribute("href", "/projects/airmetric.jpg");
+  const summary = page.locator(".project-adia summary");
+  await summary.focus();
+  await page.keyboard.press("Enter");
+  await expect(page.locator(".project-adia .project-details")).toHaveAttribute("open", "");
+  await expect(page.locator(".project-adia .project-details p")).toBeVisible();
+  await expect(page.locator(".project-adia .project-details p")).toContainText("sem validação com estudantes");
 });

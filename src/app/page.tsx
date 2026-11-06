@@ -6,6 +6,7 @@ import { Section } from "@/components/section";
 import { TechExplorer } from "@/components/tech-explorer";
 
 export default function Home() {
+  const highlightedProject = projects[0];
   return <>
     <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <Header />
@@ -17,6 +18,7 @@ export default function Home() {
             <h1 id="intro-title">Kauã Marques<span className="name-last">Almeida<span className="name-dot">.</span></span></h1>
             <p className="intro-headline">{profile.headline}</p>
             <p className="intro-description">{profile.intro}</p>
+            {highlightedProject?.recognition && <a className="intro-recognition" href={`#projeto-${highlightedProject.id}`}><Icon name="award" /><span><strong>{highlightedProject.name} · protótipo premiado</strong><small>{highlightedProject.recognition}</small></span></a>}
             <div className="intro-actions"><a className="button primary" href="#projetos">Conheça meus projetos <Icon name="down" /></a><a className="text-link" href="/curriculo/"><Icon name="file" /> Ver/Imprimir currículo</a></div>
           </div>
           <aside className="intro-aside" aria-label="Foco profissional">
@@ -29,24 +31,23 @@ export default function Home() {
         <div className="intro-foot"><span>PORTFÓLIO & CURRÍCULO</span><a href={profile.githubUrl} target="_blank" rel="noopener noreferrer"><Icon name="github" /> GitHub <Icon name="arrow" /></a></div>
       </section>
 
-      <Section id="sobre" number="01" title="Um pouco sobre mim">
+      <Section id="projetos" number="01" title="Projetos selecionados" className="projects-section">
+        <div className="project-section-intro"><p>Do protótipo à aplicação publicada.<br />Projetos em diferentes estágios, com o escopo de cada um à vista.</p></div>
+        <div className="project-grid">{projects.filter(project => project.featured).map((project, index) => <ProjectCard project={project} index={index} key={project.id} />)}</div>
+      </Section>
+
+      <Section id="sobre" number="02" title="Um pouco sobre mim">
         <p className="about-lead">Gosto de entender o problema.<br /><span>E construir o que faz sentido.</span></p>
         <p className="about-copy">{profile.summary}</p>
         <div className="about-foot"><span><Icon name="pin" /> {profile.locationShort}</span><span>Engenharia de Software · UniSENAI</span></div>
       </Section>
 
-      <Section id="experiencia" number="02" title="Experiência profissional">
+      <Section id="experiencia" number="03" title="Experiência profissional">
         <p className="section-intro">Experiência com tecnologia e com as pessoas que dependem dela no dia a dia.</p>
         <div className="experience-list">{experiences.map((experience, index) => <article className="experience" key={experience.company}>
           <div className="experience-company"><span className="company-symbol" aria-hidden="true">{index === 0 ? "S/" : "sp."}</span><div><h3>{experience.company}</h3><span>{experience.context}</span></div></div>
           <div className="experience-details"><div className="experience-role"><h4>{experience.title}</h4>{experience.period && <span>{experience.period}</span>}</div><ul>{experience.responsibilities.map(item => <li key={item}>{item}</li>)}</ul></div>
         </article>)}</div>
-      </Section>
-
-      <Section id="projetos" number="03" title="Projetos selecionados" className="projects-section">
-        <div className="project-section-intro"><p>Ideias colocadas em código.<br />Um projeto publicado para conhecer de perto.</p></div>
-        <div className="project-grid">{projects.filter(project => project.featured).map((project, index) => <ProjectCard project={project} index={index} key={project.id} />)}</div>
-        {projects.filter(project => !project.featured).map(project => <article className="other-project" key={project.id}><div><span className="eyebrow">TAMBÉM NO GITHUB · {project.status}</span><h3>{project.name}</h3><p>{project.description}</p><span className="other-tech">{project.tech.join(" · ")}</span></div><a className="text-link" href={project.githubUrl} target="_blank" rel="noopener noreferrer" aria-label={`Ver código de ${project.name} no GitHub`}>Ver código <Icon name="arrow" /></a></article>)}
       </Section>
 
       <Section id="tecnologias" number="04" title="Ferramentas de trabalho">
