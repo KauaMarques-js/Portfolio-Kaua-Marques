@@ -53,7 +53,7 @@ Para uma alteração nova, crie uma branch a partir de `develop`, valide o build
 - `public/projects/airmetric.jpg`: material fornecido do resultado do júri local do NASA Space Apps Cuiabá 2025, usado no destaque do protótipo AirMetrics.
 - `src/app/curriculo/page.tsx`: versão textual do currículo, usando os mesmos dados do portfólio.
 
-Projetos apresentados: AirMetrics, Incluvia, Flor Árabe, AgroPulse, Vaultix Security, Emissor Cuiabano, Aumigos e ADIA / CognitiveLoop. Os cartões indicam o estágio de cada projeto e os links públicos disponíveis; detalhes de escopo podem ser expandidos por teclado.
+Três projetos em destaque: AirMetrics (premiação), Flor Árabe (catálogo publicado) e Incluvia (aplicação de auditoria em desenvolvimento). AgroPulse, Vaultix Security, Emissor Cuiabano, Aumigos e ADIA / CognitiveLoop aparecem na lista expansível “Veja outros projetos”, com links públicos quando disponíveis. O currículo mantém os oito projetos.
 
 A [Flor Árabe Perfumaria](https://flor-arabe-perfumaria.vercel.app) mantém pedidos pelo WhatsApp e checkout próprio em desenvolvimento para uma próxima versão. Os projetos de hackathon são trabalhos de equipe. Contato profissional: [LinkedIn](https://www.linkedin.com/in/kauamqs).
 

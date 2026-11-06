@@ -7,6 +7,9 @@ import { TechExplorer } from "@/components/tech-explorer";
 
 export default function Home() {
   const highlightedProject = projects[0];
+  const showcaseIds = ["airmetric", "flor-arabe", "incluvia"];
+  const showcaseProjects = showcaseIds.flatMap(id => projects.filter(project => project.id === id));
+  const otherProjects = projects.filter(project => !showcaseIds.includes(project.id));
   return <>
     <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <Header />
@@ -33,7 +36,11 @@ export default function Home() {
 
       <Section id="projetos" number="01" title="Projetos selecionados" className="projects-section">
         <div className="project-section-intro"><p>Do protótipo à aplicação publicada.<br />Projetos em diferentes estágios, com o escopo de cada um à vista.</p></div>
-        <div className="project-grid">{projects.filter(project => project.featured).map((project, index) => <ProjectCard project={project} index={index} key={project.id} />)}</div>
+        <div className="project-grid">{showcaseProjects.map((project, index) => <ProjectCard project={project} index={index} key={project.id} />)}</div>
+        <details className="more-projects">
+          <summary>Veja outros projetos <span>{otherProjects.length}<Icon name="down" /></span></summary>
+          <ul>{otherProjects.map(project => <li key={project.id}>{project.githubUrl || project.demoUrl ? <a href={project.githubUrl || project.demoUrl} target="_blank" rel="noopener noreferrer">{project.name}<Icon name="arrow" /></a> : <span>{project.name}<small>{project.status}</small></span>}</li>)}</ul>
+        </details>
       </Section>
 
       <Section id="sobre" number="02" title="Um pouco sobre mim">

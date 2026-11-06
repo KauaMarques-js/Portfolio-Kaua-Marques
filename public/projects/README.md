@@ -1,6 +1,6 @@
 # Imagens dos projetos
 
-`airmetric.jpg` é o material fornecido do resultado do júri local do NASA Space Apps Cuiabá 2025, com AirMetrics na segunda posição. Ele apresenta a conquista local; não é uma captura da interface do protótipo. A imagem inteira é preservada e pode ser aberta em tamanho original pelo link do cartão.
+`airmetric.jpg` é o material fornecido do resultado do júri local do NASA Space Apps Cuiabá 2025, com AirMetrics na segunda posição. `airmetric-square.png` adapta esse material para uma composição quadrada usada no cartão. A imagem original continua disponível pelo link do resultado local.
 
 Os arquivos `github-*.svg` são as capas dos projetos publicadas no README do perfil GitHub de Kauã. São ilustrações, não capturas das aplicações.
 

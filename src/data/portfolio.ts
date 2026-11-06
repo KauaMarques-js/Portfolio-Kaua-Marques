@@ -6,6 +6,7 @@ export type Project = {
   tech: string[];
   image?: string;
   imageAlt?: string;
+  resultImage?: string;
   githubUrl?: string;
   demoUrl?: string;
   status?: string;
@@ -73,8 +74,9 @@ export const projects: Project[] = [
     category: "NASA Space Apps · Cuiabá 2025",
     description: "Protótipo de aplicativo sobre qualidade do ar, com mapas, previsões e educação ambiental, desenvolvido para o NASA Space Apps Challenge.",
     tech: ["React Native", "Expo", "TypeScript"],
-    image: "/projects/airmetric.jpg",
-    imageAlt: "Imagem fornecida do resultado do júri local do NASA Space Apps Cuiabá 2025, com AirMetrics na segunda posição",
+    image: "/projects/airmetric-square.png",
+    imageAlt: "Composição quadrada do resultado do júri local do NASA Space Apps Cuiabá 2025, com AirMetrics na segunda posição",
+    resultImage: "/projects/airmetric.jpg",
     status: "Protótipo de hackathon",
     recognition: "2º lugar · NASA Space Apps Challenge · etapa local de Cuiabá, 2025",
     githubUrl: "https://github.com/KauaMarques-js/AirMetrics",
