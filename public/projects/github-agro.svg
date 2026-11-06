@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="350" viewBox="0 0 720 350" role="img" aria-label="AGROPULSE: AGRICULTURAL INTELLIGENCE">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0C1420"/><stop offset="1" stop-color="#142436"/></linearGradient>
+<pattern id="lines" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#86D9AD" stroke-width=".7" opacity=".11"/></pattern></defs>
+<rect width="720" height="350" rx="16" fill="url(#bg)"/>
+<rect x="1.5" y="1.5" width="717" height="347" rx="14" stroke="#31465A" stroke-width="2" fill="none"/>
+<rect x="421" y="15" width="280" height="319" fill="url(#lines)"/>
+<path d="M27 62h661M27 292h661" stroke="#34485D" stroke-width="1.5"/>
+<circle cx="37" cy="36" r="5" fill="#86D9AD"/>
+<text x="55" y="41" fill="#B3C6D6" font-family="monospace" font-size="16" letter-spacing="1.4">04 / HACKATHON</text>
+<text x="684" y="41" fill="#7792A6" text-anchor="end" font-family="monospace" font-size="14">K / M.</text>
+<text x="28" y="138" fill="#EFF5FC" font-family="Arial,Helvetica,sans-serif" font-size="42" font-weight="800" letter-spacing="-1">AGROPULSE</text>
+<rect x="28" y="155" width="52" height="4" rx="2" fill="#86D9AD"/>
+<text x="29" y="195" fill="#A9BCCB" font-family="monospace" font-size="15" letter-spacing="1.2">AGRICULTURAL INTELLIGENCE</text>
+<text x="29" y="320" fill="#86D9AD" font-family="monospace" font-size="17">NEXT.JS  /  MAPBOX</text>
+<g transform="translate(471 73)"><path d="M22 179L140 50L241 134L125 263Z" fill="#214B43" stroke="#86D9AD" stroke-width="3"/><path d="M57 202L169 77M87 228L198 98M118 258L225 121M35 167L135 243M57 140L156 218M80 115L178 194M101 90L201 171" stroke="#4D9A79" stroke-width="9"/><path d="M44 167L140 50L241 134" stroke="#92F3C4" stroke-width="3" fill="none"/><g transform="translate(15 -7) rotate(-27)"><rect x="0" y="0" width="48" height="25" rx="4" fill="#7E9BB5"/><rect x="-56" y="-9" width="45" height="42" fill="#294F74" stroke="#86D9AD" stroke-width="3"/><rect x="59" y="-9" width="45" height="42" fill="#294F74" stroke="#86D9AD" stroke-width="3"/></g><circle cx="142" cy="151" r="33" fill="none" stroke="#86D9AD" stroke-width="3" stroke-dasharray="7 6"/><circle cx="142" cy="151" r="8" fill="#86D9AD"/></g></svg>

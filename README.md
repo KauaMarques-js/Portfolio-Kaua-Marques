@@ -53,9 +53,9 @@ Para uma alteração nova, crie uma branch a partir de `develop`, valide o build
 - `public/projects/airmetric.jpg`: material fornecido do resultado do júri local do NASA Space Apps Cuiabá 2025, usado no destaque do protótipo AirMetrics.
 - `src/app/curriculo/page.tsx`: versão textual do currículo, usando os mesmos dados do portfólio.
 
-Projetos apresentados, nesta ordem: AirMetrics (protótipo premiado com 2º lugar na etapa local do NASA Space Apps Cuiabá 2025), Incluvia (em desenvolvimento), Flor Árabe (catálogo publicado), Aumigos (protótipo) e ADIA / CognitiveLoop (pesquisa e protótipo conceitual). Os estados são visíveis nos cartões; detalhes de escopo podem ser expandidos por teclado.
+Projetos apresentados: AirMetrics, Incluvia, Flor Árabe, AgroPulse, Vaultix Security, Emissor Cuiabano, Aumigos e ADIA / CognitiveLoop. Os cartões indicam o estágio de cada projeto e os links públicos disponíveis; detalhes de escopo podem ser expandidos por teclado.
 
-A [Flor Árabe Perfumaria](https://flor-arabe-perfumaria.vercel.app) mantém pedidos pelo WhatsApp e checkout próprio em desenvolvimento para uma próxima versão. O código público da landing page ADIA tem link para o GitHub. Sem URLs inventadas ou links para repositórios privados. Stack, funcionalidades e contribuição individual do AirMetrics serão preenchidas apenas quando houver material confirmado. Contato profissional: [LinkedIn](https://www.linkedin.com/in/kauamqs).
+A [Flor Árabe Perfumaria](https://flor-arabe-perfumaria.vercel.app) mantém pedidos pelo WhatsApp e checkout próprio em desenvolvimento para uma próxima versão. Os projetos de hackathon são trabalhos de equipe. Contato profissional: [LinkedIn](https://www.linkedin.com/in/kauamqs).
 
 ## Testes
 

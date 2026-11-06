@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="350" viewBox="0 0 720 350" role="img" aria-label="EMISSOR CUIABANO: FISCAL SOFTWARE">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0C1420"/><stop offset="1" stop-color="#142436"/></linearGradient>
+<pattern id="lines" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#77AFFF" stroke-width=".7" opacity=".11"/></pattern></defs>
+<rect width="720" height="350" rx="16" fill="url(#bg)"/>
+<rect x="1.5" y="1.5" width="717" height="347" rx="14" stroke="#31465A" stroke-width="2" fill="none"/>
+<rect x="421" y="15" width="280" height="319" fill="url(#lines)"/>
+<path d="M27 62h661M27 292h661" stroke="#34485D" stroke-width="1.5"/>
+<circle cx="37" cy="36" r="5" fill="#77AFFF"/>
+<text x="55" y="41" fill="#B3C6D6" font-family="monospace" font-size="16" letter-spacing="1.4">01 / PRODUCT</text>
+<text x="684" y="41" fill="#7792A6" text-anchor="end" font-family="monospace" font-size="14">K / M.</text>
+<text x="28" y="138" fill="#EFF5FC" font-family="Arial,Helvetica,sans-serif" font-size="34" font-weight="800" letter-spacing="-1">EMISSOR CUIABANO</text>
+<rect x="28" y="155" width="52" height="4" rx="2" fill="#77AFFF"/>
+<text x="29" y="195" fill="#A9BCCB" font-family="monospace" font-size="15" letter-spacing="1.2">FISCAL SOFTWARE</text>
+<text x="29" y="320" fill="#77AFFF" font-family="monospace" font-size="17">C#  /  .NET  /  SQLITE</text>
+<g transform="translate(485 64)"><rect x="25" y="17" width="160" height="211" rx="10" fill="#17283B" stroke="#476589" stroke-width="3"/><rect x="3" y="0" width="160" height="211" rx="10" fill="#1D344A" stroke="#77AFFF" stroke-width="3"/><rect x="22" y="26" width="67" height="9" rx="4" fill="#77AFFF" opacity=".8"/><path d="M22 57h116M22 78h116M22 99h85M22 165h116" stroke="#527595" stroke-width="6" stroke-linecap="round"/><circle cx="105" cy="151" r="25" fill="#183E57" stroke="#77AFFF" stroke-width="3"/><path d="M92 150l10 10 19-22" stroke="#77AFFF" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
