@@ -39,7 +39,7 @@ export function Header() {
     if (menu.current) menu.current.open = false;
   }
 
-  return <header className="header-wrap" id="inicio">
+  return <header className="header-wrap">
     <div className="reading-progress" style={{ transform: `scaleX(${progress})` }} aria-hidden="true" />
     <div className="site-header shell">
       <a className="brand" href="#inicio" aria-label="Kauã Marques, início"><span className="brand-bracket">&lt;</span>km<span className="brand-bracket"> /&gt;</span></a>
