@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: "Portfólio de Kauã Marques Almeida, desenvolvedor Full Stack em Cuiabá. Aplicações web, APIs, experiência profissional e formação.",
   openGraph: {
     title: "Kauã Marques Almeida — Desenvolvedor Full Stack",
-    description: "Aplicações web, do que se vê ao que faz funcionar. Conheça meus projetos e minha trajetória.",
+    description: "Aplicações web e APIs. Projetos e trajetória de Kauã Marques Almeida, desenvolvedor em Cuiabá.",
     locale: "pt_BR",
     type: "website",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "Kauã Marques Almeida, Desenvolvedor Full Stack em Cuiabá" }],

@@ -34,26 +34,15 @@ Se o projeto já tiver sido importado com Output Directory `out`, o `vercel.json
 
 O domínio da Vercel é usado automaticamente nos metadados. Para um endereço próprio, configure `NEXT_PUBLIC_SITE_URL` com a URL completa, incluindo `https://`, e faça um novo deploy. A indexação é habilitada no ambiente de produção da Vercel; prévias e execução local permanecem sem indexação.
 
-## Branches
-
-| Branch | Uso |
-| --- | --- |
-| `main` | Versão integrada para produção na Vercel. |
-| `develop` | Base para as próximas alterações. |
-| `feat/portfolio` | Implementação das páginas, conteúdo, componentes e identidade visual. |
-| `chore/validacao-e-deploy` | Testes, prévia estática e configuração de publicação. |
-
-Para uma alteração nova, crie uma branch a partir de `develop`, valide o build e os testes, e integre à `main` quando estiver pronta para produção.
-
 ## Conteúdo e imagens
 
 - `src/data/portfolio.ts`: perfil, contatos, experiência, projetos, formação e tecnologias.
 - `src/app/globals.css`: layout responsivo, estilos e impressão.
 - `public/projects/flor-arabe.webp`: captura real e otimizada da página inicial da Flor Árabe. Na ausência da imagem, aparece uma composição tipográfica.
-- `public/projects/airmetric.jpg`: material fornecido do resultado do júri local do NASA Space Apps Cuiabá 2025, usado no destaque do protótipo AirMetrics.
+- `public/projects/airmetric.jpg`: resultado real do júri local do NASA Space Apps Cuiabá 2025, usado no projeto AirMetrics.
 - `src/app/curriculo/page.tsx`: versão textual do currículo, usando os mesmos dados do portfólio.
 
-Três projetos em destaque: AirMetrics (premiação), Flor Árabe (catálogo publicado) e Incluvia (aplicação de auditoria em desenvolvimento). AgroPulse, Vaultix Security, Emissor Cuiabano, Aumigos e ADIA / CognitiveLoop aparecem na lista expansível “Veja outros projetos”, com links públicos quando disponíveis. O currículo mantém os oito projetos.
+Três projetos em destaque: Flor Árabe (catálogo publicado), AirMetrics (premiação) e Incluvia (aplicação de auditoria em desenvolvimento). AgroPulse, Vaultix Security, Emissor Cuiabano, Aumigos e ADIA / CognitiveLoop aparecem na lista expansível “Outros projetos”, com links públicos quando disponíveis. O currículo mantém os oito projetos.
 
 A [Flor Árabe Perfumaria](https://flor-arabe-perfumaria.vercel.app) mantém pedidos pelo WhatsApp e checkout próprio em desenvolvimento para uma próxima versão. Os projetos de hackathon são trabalhos de equipe. Contato profissional: [LinkedIn](https://www.linkedin.com/in/kauamqs).
 
@@ -61,12 +50,16 @@ A [Flor Árabe Perfumaria](https://flor-arabe-perfumaria.vercel.app) mantém ped
 
 ```sh
 npm run build
-npx playwright install webkit
+npx playwright install chromium webkit
 npm test
 ```
 
-Os testes usam Google Chrome instalado e WebKit com viewport mobile. Verificam larguras 360/768/1440 px, navegação, teclado, menu, links, impressão, movimento reduzido, filtros de tecnologias, persistência do tema e regras automatizadas de acessibilidade nos temas claro e escuro. Capturas e PDF de verificação são gerados em `artifacts/`, fora do controle de versão. O teste WebKit exercita fontes, ícones e interações no motor de navegador usado pelo Safari; não substitui um teste em iPhone físico.
+Os testes usam Chromium do Playwright e WebKit mobile. Verificam larguras 360/390/768/1024/1440 px, navegação, teclado, menu, links, imagens, detalhes dos projetos, impressão, movimento reduzido, persistência do tema e acessibilidade nos temas claro e escuro. Capturas e PDF de verificação são gerados em `artifacts/`, fora do controle de versão. Para usar outro Chromium instalado, defina `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`. O teste WebKit não substitui um teste em iPhone físico.
 
-O tema padrão é Midnight Blue: fundo `#0B0F19`, cards `#151C2C`, azul `#4F8CFF`, destaques ciano `#22D3EE`, texto `#F8FAFC` e texto secundário `#94A3B8`. A opção clara continua disponível, e a preferência escolhida é preservada no armazenamento local do navegador, sem envio de dados. O tema escuro já está no HTML inicial, sem depender de JavaScript para as cores.
+## Direção visual
+
+A interface segue uma composição editorial mínima, com base na [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill): hierarquia tipográfica, baixo volume de conteúdo, separadores simples e espaçamento consistente. A página reúne apresentação, projetos, resumo profissional e contato. Detalhes de escopo ficam em controles expansíveis; o currículo preserva as informações completas. Não há painéis decorativos de código, listas de badges ou capas ilustrativas de IA na página.
+
+O tema padrão usa grafite `#191A18`, texto `#F1F0E9` e destaque `#E5B683`. A alternativa clara usa fundo `#F4F2EB`, texto `#242620` e destaque `#865024`. A preferência é preservada apenas no armazenamento local.
 
 Geist e Geist Mono são servidas localmente; suas licenças estão em `public/fonts/Geist-OFL.txt` e `public/fonts/GeistMono-OFL.txt`. A interface usa ícones SVG, sem setas de texto que possam ser convertidas em emoji.

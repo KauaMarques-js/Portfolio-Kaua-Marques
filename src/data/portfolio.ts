@@ -37,8 +37,6 @@ export const profile = {
 export const navigation = [
   { id: "projetos", label: "Projetos" },
   { id: "sobre", label: "Sobre" },
-  { id: "experiencia", label: "Experiência" },
-  { id: "formacao", label: "Formação" },
   { id: "contato", label: "Contato" },
 ];
 

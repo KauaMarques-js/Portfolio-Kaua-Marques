@@ -1,37 +1,25 @@
 import { expect, test } from "@playwright/test";
 
-test("WebKit mobile: fontes, SVGs, menu, tema e filtros", async ({ page }) => {
+test("WebKit mobile: fontes, imagens, menu, tema e detalhes", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", error => errors.push(error.message));
   await page.goto("/");
   await page.evaluate(() => document.fonts.ready);
   expect(await page.evaluate(() => document.fonts.check('14px "Geist"'))).toBe(true);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-  expect(await page.locator("body").innerText()).not.toMatch(/[↑↓←→↗↘↙↖]/u);
-  const screenshot = page.locator(".project-flor-arabe .project-visual img");
-  await screenshot.scrollIntoViewIfNeeded();
-  await expect(screenshot).toBeVisible();
-  await expect.poll(() => screenshot.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
-  await page.locator(".project-flor-arabe").screenshot({ path: "artifacts/flor-arabe-card-webkit.png" });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   for (const image of await page.locator(".project-visual img").all()) {
     await image.scrollIntoViewIfNeeded();
-    await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.complete && element.naturalWidth > 0)).toBe(true);
+    await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
   }
-  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
-  await expect(page.locator(".project-flor-arabe .project-links svg")).toBeVisible();
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
-  await page.screenshot({ path: "artifacts/webkit-mobile-escuro.png", fullPage: true });
   await page.getByRole("button", { name: "Tema escuro" }).click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
-  await page.getByText("Menu", { exact: false }).click();
+  await page.locator(".mobile-nav > summary").click();
   const nav = page.getByRole("navigation", { name: "Navegação no celular" });
   await nav.getByRole("link", { name: "Projetos", exact: true }).click();
   await expect(nav).toBeHidden();
   await expect(page).toHaveURL(/#projetos$/);
-  await page.getByRole("button", { name: "Backend e dados", exact: true }).click();
-  await expect(page.locator("#tech-results")).toContainText("SQLite");
-  await expect(page.locator("#tech-results")).not.toContainText("Next.js");
-  await page.getByRole("button", { name: "Todas", exact: true }).click();
-  await page.screenshot({ path: "artifacts/webkit-mobile-claro.png", fullPage: true });
+  await page.locator(".project-flor-arabe summary").click();
+  await expect(page.locator(".project-flor-arabe details")).toContainText("Checkout próprio em desenvolvimento");
+  await page.screenshot({ path: "artifacts/webkit-mobile.png", fullPage: true });
   expect(errors).toEqual([]);
 });
