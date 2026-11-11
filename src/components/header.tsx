@@ -9,7 +9,7 @@ export function Header() {
   const menu = useRef<HTMLDetailsElement>(null);
   return <header className="header-wrap">
     <div className="site-header shell">
-      <a className="brand" href="#inicio" aria-label="Kauã Marques, início">km.</a>
+      <a className="brand" href="#inicio" aria-label="Kauã Marques, início">Kauã Marques</a>
       <nav className="desktop-nav" aria-label="Navegação principal">{navigation.map(item => <a key={item.id} href={`#${item.id}`}>{item.label}</a>)}</nav>
       <div className="header-actions"><a className="header-resume" href="/curriculo/">Currículo</a><ThemeToggle /></div>
       <details className="mobile-nav" ref={menu} onKeyDown={event => { if (event.key === "Escape" && menu.current) { menu.current.open = false; menu.current.querySelector("summary")?.focus(); } }}>

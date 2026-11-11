@@ -10,7 +10,11 @@ for (const width of [360, 390, 768, 1024, 1440]) {
     page.on("response", response => { if (response.status() >= 400) failed.push(response.url()); });
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Kauã Marques.");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Desenvolvo aplicações web e APIs.");
+    await expect(page.getByRole("link", { name: "Kauã Marques, início" })).toBeVisible();
+    await expect(page.getByText("SESP/MT · Spedy")).toBeVisible();
+    await expect(page.getByRole("link", { name: /kaua\.marquesal@gmail\.com/ })).toHaveAttribute("href", "mailto:kaua.marquesal@gmail.com");
+    await expect(page.getByRole("link", { name: /\+55 \(65\) 99915-7088/ })).toHaveAttribute("href", "tel:+5565999157088");
     await expect(page.locator("html")).toHaveAttribute("lang", "pt-BR");
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.getByRole("link", { name: "Ver projetos", exact: true }).click();
@@ -24,7 +28,7 @@ for (const width of [360, 390, 768, 1024, 1440]) {
     }
     await expect(page.getByRole("link", { name: "Visitar site de Flor Árabe (abre em nova aba)" })).toHaveAttribute("href", "https://flor-arabe-perfumaria.vercel.app");
     await expect(page.locator(".project-airmetric")).toContainText("NASA Space Apps de Cuiabá, em 2025");
-    await expect(page.locator(".project-incluvia img")).toHaveCount(0);
+    await expect(page.locator(".project-incluvia img")).toHaveAttribute("src", "/projects/incluvia.png");
     expect(await page.locator('a[target="_blank"]:not([rel*="noopener"])').count()).toBe(0);
     await page.locator(".more-projects > summary").click();
     await expect(page.getByRole("article", { name: "AgroPulse", exact: true })).toBeVisible();
@@ -35,6 +39,9 @@ for (const width of [360, 390, 768, 1024, 1440]) {
     expect(result.violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => n.target) }))).toEqual([]);
     await page.locator(".more-projects > summary").click();
     await page.evaluate(() => scrollTo({ top: 0, behavior: "instant" }));
+    if (width === 390 || width === 1440) {
+      await page.screenshot({ path: `artifacts/hero-${width}.png` });
+    }
     await page.screenshot({ path: `artifacts/portfolio-${width}.png`, fullPage: true });
     expect(errors).toEqual([]);
     expect(failed).toEqual([]);
@@ -102,6 +109,8 @@ test("currículo completo acessível, responsivo e imprimível", async ({ page }
   await page.getByRole("link", { name: "Currículo", exact: true }).click();
   await expect(page).toHaveURL(/\/curriculo\/$/);
   await expect(page.locator(".resume-project")).toHaveCount(8);
+  await expect(page.getByRole("link", { name: "kaua.marquesal@gmail.com" })).toHaveAttribute("href", "mailto:kaua.marquesal@gmail.com");
+  await expect(page.getByRole("link", { name: "+55 (65) 99915-7088" })).toHaveAttribute("href", "tel:+5565999157088");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.getByRole("button", { name: "Imprimir / Salvar em PDF" }).click();
   await expect(page.locator("html")).toHaveAttribute("data-print-requested", "true");
@@ -116,4 +125,14 @@ test("movimento reduzido", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe("auto");
+  await expect(page.locator(".project-incluvia")).not.toHaveClass(/reveal-pending/);
+});
+
+test("projetos entram com movimento discreto ao rolar a página", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 700 });
+  await page.goto("/");
+  const lastProject = page.locator(".project-incluvia");
+  await expect(lastProject).toHaveClass(/reveal-pending/);
+  await lastProject.scrollIntoViewIfNeeded();
+  await expect(lastProject).toHaveClass(/reveal-entered/);
 });

@@ -9,8 +9,7 @@ const introductions: Record<string, string> = {
 };
 
 export function ProjectCard({ project, index }: { project: Project; index: number }) {
-  // Use the real catalog capture and local award material; no illustrative AI covers.
-  const image = project.id === "airmetric" ? project.resultImage : project.id === "flor-arabe" ? project.image : undefined;
+  const image = project.id === "airmetric" ? project.resultImage : project.image;
   return <article id={`projeto-${project.id}`} className={`project project-${project.id}`} aria-labelledby={`title-${project.id}`}>
     <span className="project-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
     <div className="project-body">

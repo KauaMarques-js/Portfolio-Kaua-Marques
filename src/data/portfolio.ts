@@ -29,8 +29,8 @@ export const profile = {
   summary: "Sou desenvolvedor Full Stack e estudante de Engenharia de Software, com formação técnica em Análise e Desenvolvimento de Sistemas. Crio aplicações web e APIs, conectando interfaces a soluções de backend. Minha experiência em suporte técnico também me aproxima de quem usa os sistemas: entender o problema faz parte do desenvolvimento.",
   githubUrl: "https://github.com/KauaMarques-js",
   githubHandle: "KauaMarques-js",
-  email: undefined as string | undefined,
-  phone: undefined as string | undefined,
+  email: "kaua.marquesal@gmail.com",
+  phone: "+55 (65) 99915-7088",
   linkedinUrl: "https://www.linkedin.com/in/kauamqs",
 };
 

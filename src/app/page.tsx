@@ -2,6 +2,7 @@ import { education, experiences, profile, projects } from "@/data/portfolio";
 import { Header } from "@/components/header";
 import { Icon } from "@/components/icon";
 import { ProjectCard } from "@/components/project-card";
+import { RevealOnScroll } from "@/components/reveal-on-scroll";
 
 export default function Home() {
   const selectedIds = ["flor-arabe", "airmetric", "incluvia"];
@@ -10,12 +11,35 @@ export default function Home() {
   return <>
     <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <Header />
+    <RevealOnScroll />
     <main id="conteudo" className="shell">
       <section className="intro" aria-labelledby="intro-title">
-        <p className="eyebrow">{profile.title} · Cuiabá, MT</p>
-        <h1 id="intro-title">Kauã Marques<span aria-hidden="true">.</span></h1>
-        <p className="intro-copy">Desenvolvo aplicações web e APIs.<br />Hoje, estudo Engenharia de Software e trabalho com TI na SESP/MT.</p>
-        <div className="intro-links"><a className="inline-link" href="#projetos">Ver projetos <Icon name="down" /></a><a className="inline-link" href={profile.githubUrl} target="_blank" rel="noopener noreferrer">GitHub <Icon name="arrow" /></a></div>
+        <div className="intro-context">
+          <p className="intro-role">Desenvolvedor Full Stack</p>
+          <p className="intro-location">Cuiabá, MT · Brasil</p>
+        </div>
+        <h1 id="intro-title">Desenvolvo aplicações{' '}<br />web e APIs<span aria-hidden="true">.</span></h1>
+        <p className="intro-copy">Trabalho com React, Node.js e C# e já atendi clientes de software. Hoje, estudo Engenharia de Software e atuo com TI na SESP/MT.</p>
+        <div className="intro-links">
+          <a className="intro-cta" href="#projetos">Ver projetos <Icon name="arrow" /></a>
+          <a className="inline-link" href="/curriculo/">Currículo completo <Icon name="arrow" /></a>
+        </div>
+        <div className="intro-highlights" aria-label="Experiência, formação e reconhecimento">
+          <div>
+            <p>Experiência</p>
+            <strong>SESP/MT · Spedy</strong>
+          </div>
+          <div>
+            <p>Formação</p>
+            <strong>Engenharia de Software</strong>
+            <span>UniSENAI</span>
+          </div>
+          <div>
+            <p>Reconhecimento</p>
+            <strong>2º lugar · NASA Space Apps</strong>
+            <span>Cuiabá, 2025</span>
+          </div>
+        </div>
       </section>
 
       <section id="projetos" className="section" aria-labelledby="projetos-title">
@@ -46,8 +70,8 @@ export default function Home() {
       </section>
 
       <section id="contato" className="contact" aria-labelledby="contact-title"><div><h2 id="contact-title">Entre em contato.</h2><p>Cuiabá, Mato Grosso · Brasil</p></div><div className="contact-links">
-        {profile.email && <a className="inline-link" href={`mailto:${profile.email}`}>E-mail <Icon name="arrow" /></a>}
-        {profile.phone && <a className="inline-link" href={`tel:${profile.phone.replace(/[^+\d]/g, "")}`}>Telefone <Icon name="arrow" /></a>}
+        {profile.email && <a className="inline-link" href={`mailto:${profile.email}`}>{profile.email} <Icon name="arrow" /></a>}
+        {profile.phone && <a className="inline-link" href={`tel:${profile.phone.replace(/[^+\d]/g, "")}`}>{profile.phone} <Icon name="arrow" /></a>}
         {profile.linkedinUrl && <a className="inline-link" href={profile.linkedinUrl} target="_blank" rel="noopener noreferrer">LinkedIn <Icon name="arrow" /></a>}
         <a className="inline-link" href={profile.githubUrl} target="_blank" rel="noopener noreferrer">GitHub <Icon name="arrow" /></a>
       </div></section>
