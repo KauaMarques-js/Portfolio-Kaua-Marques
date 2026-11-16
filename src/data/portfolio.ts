@@ -67,6 +67,19 @@ export const experiences = [
 
 export const projects: Project[] = [
   {
+    id: "sulco",
+    name: "SULCO",
+    category: "NASA Space Apps · 2026",
+    description: "Ouça a diferença. Plataforma de exploração de dados da Terra por som, gráficos e texto, com acessibilidade no centro da experiência.",
+    tech: ["Next.js", "TypeScript", "Web Audio API", "React"],
+    githubUrl: "https://github.com/KauaMarques-js/sulco",
+    demoUrl: "https://sulcoo.vercel.app/",
+    status: "NASA Space Apps 2026 · projeto publicado",
+    note: "Desenvolvido em equipe por Arthur Loni, Carlos Eduardo, Kauã Marques Almeida, Adrielly Andrade, Lucas Abreu Estrela e Mauricio Abreu.",
+    details: "Slogan em inglês: “Hear the changes of our planet.” Criado para o desafio The Earth Information Jukebox. Explora clima, incêndios e oceanos com sonificação, navegação por teclado, alternativas textuais, tabelas acessíveis, alto contraste, redução de movimento e apoio em Libras. Dados e visualizações: NASA GISS, NASA FIRMS, NASA SVS e NOAA CoastWatch.",
+    featured: true,
+  },
+  {
     id: "airmetric",
     name: "AirMetrics",
     category: "NASA Space Apps · Cuiabá 2025",
@@ -179,6 +192,7 @@ export const education = [
 ];
 
 export const activities = [
+  { name: "NASA Space Apps Challenge 2026", description: "Desenvolvimento em equipe do SULCO, com foco em acessibilidade e sonificação de dados da Terra." },
   { name: "NASA Space Apps Challenge 2025", description: "2º lugar na etapa local de Cuiabá com o protótipo AirMetrics." },
   { name: "Hacker Hero 2026", description: "Participação em maratona colaborativa de tecnologia." },
 ];

@@ -20,7 +20,7 @@ for (const width of [360, 390, 768, 1024, 1440]) {
     await page.getByRole("link", { name: "Ver projetos", exact: true }).click();
     await expect(page).toHaveURL(/#projetos$/);
     await expect(page.getByRole("heading", { name: "Projetos selecionados" })).toBeInViewport();
-    await expect(page.locator(".project h3")).toHaveText(["Flor Árabe", "AirMetrics", "Incluvia"]);
+    await expect(page.locator(".project h3")).toHaveText(["SULCO", "Flor Árabe", "AirMetrics", "Incluvia"]);
     await expect(page.locator(".more-projects")).not.toHaveAttribute("open", "");
     for (const image of await page.locator(".project-visual img").all()) {
       await image.scrollIntoViewIfNeeded();
@@ -70,7 +70,7 @@ test("menu mobile, escape e navegação por teclado", async ({ page }) => {
 
 test("detalhes dos projetos preservam escopo e resultado local", async ({ page }) => {
   await page.goto("/");
-  for (const id of ["flor-arabe", "airmetric", "incluvia"]) {
+  for (const id of ["sulco", "flor-arabe", "airmetric", "incluvia"]) {
     const summary = page.locator(`.project-${id} summary`);
     await summary.focus();
     await page.keyboard.press("Enter");
@@ -80,6 +80,9 @@ test("detalhes dos projetos preservam escopo e resultado local", async ({ page }
   await expect(page.locator(".project-airmetric details")).toContainText("dados simulados");
   await expect(page.getByRole("link", { name: "Ver resultado local", exact: true })).toHaveAttribute("href", "/projects/airmetric.jpg");
   await expect(page.locator(".project-incluvia details")).toContainText("revisão humana");
+  await expect(page.locator(".project-sulco details")).toContainText("Hear the changes of our planet.");
+  await expect(page.locator(".project-sulco details")).toContainText("Arthur Loni, Carlos Eduardo, Kauã Marques Almeida, Adrielly Andrade, Lucas Abreu Estrela e Mauricio Abreu");
+  await expect(page.locator(".project-sulco a").filter({ hasText: "Visitar site" })).toHaveAttribute("href", "https://sulcoo.vercel.app/");
   await page.locator(".more-projects > summary").click();
   await expect(page.locator(".more-projects h3")).toHaveText(["AgroPulse", "Vaultix Security", "Emissor Cuiabano", "Aumigos", "ADIA / CognitiveLoop"]);
   await expect(page.getByRole("article", { name: "Aumigos", exact: true }).getByRole("link")).toHaveCount(0);
@@ -108,7 +111,7 @@ test("currículo completo acessível, responsivo e imprimível", async ({ page }
   await page.goto("/");
   await page.getByRole("link", { name: "Currículo", exact: true }).click();
   await expect(page).toHaveURL(/\/curriculo\/$/);
-  await expect(page.locator(".resume-project")).toHaveCount(8);
+  await expect(page.locator(".resume-project")).toHaveCount(9);
   await expect(page.getByRole("link", { name: "kaua.marquesal@gmail.com" })).toHaveAttribute("href", "mailto:kaua.marquesal@gmail.com");
   await expect(page.getByRole("link", { name: "+55 (65) 99915-7088" })).toHaveAttribute("href", "tel:+5565999157088");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

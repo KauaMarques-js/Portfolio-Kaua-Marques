@@ -5,7 +5,7 @@ import { ProjectCard } from "@/components/project-card";
 import { RevealOnScroll } from "@/components/reveal-on-scroll";
 
 export default function Home() {
-  const selectedIds = ["flor-arabe", "airmetric", "incluvia"];
+  const selectedIds = ["sulco", "flor-arabe", "airmetric", "incluvia"];
   const selected = selectedIds.flatMap(id => projects.filter(project => project.id === id));
   const others = projects.filter(project => !selectedIds.includes(project.id));
   return <>

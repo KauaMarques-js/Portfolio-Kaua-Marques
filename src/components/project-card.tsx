@@ -26,6 +26,6 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         {project.resultImage && <a href={project.resultImage} target="_blank" rel="noopener noreferrer">Ver resultado local <Icon name="arrow" /></a>}
       </details>}
     </div>
-    <div className="project-visual">{image ? <Image src={image} alt={project.id === "airmetric" ? "Resultado do júri local do NASA Space Apps Cuiabá 2025, com AirMetrics em segundo lugar" : project.imageAlt || project.name} width={800} height={500} sizes="(max-width: 600px) calc(100vw - 78px), (max-width: 800px) 200px, 260px" /> : <div className="project-wordmark" aria-hidden="true"><strong>{project.name}</strong><span>ACESSIBILIDADE DIGITAL</span></div>}</div>
+    <div className="project-visual">{image ? <Image src={image} alt={project.id === "airmetric" ? "Resultado do júri local do NASA Space Apps Cuiabá 2025, com AirMetrics em segundo lugar" : project.imageAlt || project.name} width={800} height={500} sizes="(max-width: 600px) calc(100vw - 78px), (max-width: 800px) 200px, 260px" /> : <div className="project-wordmark" aria-hidden="true"><strong>{project.name}</strong><span>{project.id === "sulco" ? "OUÇA A DIFERENÇA" : "ACESSIBILIDADE DIGITAL"}</span></div>}</div>
   </article>;
 }
